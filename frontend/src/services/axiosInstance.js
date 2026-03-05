@@ -28,9 +28,16 @@ instance.interceptors.response.use(
             .then(res=>{
                 localStorage.setItem("token",res.data.accessToken)
                 originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`
+                return instance(originalRequest)
                 
             })
+            .catch(err =>{
+                // log the user out
+                localStorage.removeItem("token")
+                window.location.href("/login")
+            })
         }
+        return Promise.reject(err);
     }
 )
 
