@@ -25,7 +25,11 @@ export default function Register() {
                 alert(res.data.message)
                 navigate("/login")
             })
-            .catch(err => console.log(err.response))
+            .catch(err => {
+                console.log(err.response)
+                alert(err.response.message)
+                navigate("/seller/login")
+            })
 
     }
 

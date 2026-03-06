@@ -2,7 +2,7 @@ const express = require("express")
 const bcrypt = require("bcrypt")
 const Seller = require("../models/Seller.js")
 const { generateAccessToken, generateRefreshToken } = require("../utils/generateTokens.js")
-const jwt = require("jwt")
+const jwt = require("jsonwebtoken")
 
 const router = express.Router()
 const transporter = require("../utils/sendEmail.js")
@@ -87,7 +87,9 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     try {
+        
         const { email, password } = req.body
+
 
         // Find if email exists
         const seller = await Seller.findOne({ email })

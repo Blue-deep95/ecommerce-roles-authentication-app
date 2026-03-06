@@ -13,7 +13,7 @@ export default function SellerLogin() {
 
   function handleLogin(e) {
     e.preventDefault()
-    axios.post("/seller/login", { loginData })
+    axios.post("/seller/login", loginData)
       .then((res) => {
         if (res.status === 200) {
           login(res.data)
@@ -38,6 +38,7 @@ export default function SellerLogin() {
     <div className='container mx-auto' >
       <div className='row' >
         <form className='col-12 col-md-6' onSubmit={handleLogin} >
+          <h2>Seller Login</h2>
           <div className='mb-3' >
             <input
               className='form-control'
